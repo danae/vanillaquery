@@ -2,8 +2,10 @@
 
 VanillaQuery is a MongoDB-like document query interface for PHP objects.
 
-**PLEASE NOTE: This library is in an early development stage! Not all functionality described below is currently
-working.**
+> PLEASE NOTE: This library is in an early development stage! Not all functionality described below is currently
+working or not tested, notably:
+> - The `Query::findOne()` function
+> - Using JSON as query
 
 ## Contents
 
@@ -18,7 +20,7 @@ Installation of VanillaQuery is best done using composer:
 ```bash
 composer require dengsn/vanillaquery
 ```
-Alternatively you can download the latest source code or the master branch yoursel. Be sure to include the
+Alternatively you can download the latest source code or the master branch yourself. Be sure to include the
 `vendor/autoload.php` file to autoload all classes and dependencies.
 
 <a name="usage"></a>
