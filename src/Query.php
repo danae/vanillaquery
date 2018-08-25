@@ -21,13 +21,18 @@ class Query
   }
 
   // Evaluate a query array
-  public function evaluate(array $query)
+  public function evaluate($query)
   {
+    if (is_string($query))
+      $query = JsonDecoder::decode($query);
+    elseif (!is_array($query))
+      throw new \InvalidArgumentException("query must be either an array or a string containing valid JSON");
+
     return $this->evaluator->evaluate($query);
   }
 
   // Return the found results of a query
-  public function find(array $query): array
+  public function find($query): array
   {
     // Evaluate the query
     $predicate = $this->evaluate($query);

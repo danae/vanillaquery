@@ -95,6 +95,12 @@ class QueryTest extends TestCase
       // Other tests
       'implicit' => [['firstName' => 'John'], ['john_doe', 'john_watson']],
       'multiple' => [['firstName' => 'John', 'rank' => ['$lt' => 50]], ['john_doe']],
+
+      // Some tests with JSON queries
+      'json $lt' => ['{"rank": {"$lt": 12}}', ['mary_sue']],
+      'json $in' => ['{"lastName": {"$in": ["Holmes", "Watson"]}}', ['sherlock_holmes', 'john_watson']],
+      'json $class DateTime' => ['{"born": {"$class": "' . \DateTime::class . '"}}', ['sherlock_holmes']],
+      'json $size' => ['{"tags": {"$size": 1}}', ['mary_sue', 'raja_patil']]
     ];
   }
 
@@ -113,7 +119,7 @@ class QueryTest extends TestCase
   * @dataProvider queryFindProvider
   * @depends testConstructor
   */
-  public function testFind(array $query, array $resultKeys, Query $queryObject)
+  public function testFind($query, array $resultKeys, Query $queryObject)
   {
     $results = $queryObject->find($query);
 
