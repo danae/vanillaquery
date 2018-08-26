@@ -53,7 +53,7 @@ class Query
   }
 
   // Return the first found result of a query or null if nothing found
-  public function findOne(array $query): ?object
+  public function findOne($query): ?object
   {
     // Evaluate the query
     $predicate = $this->evaluate($query);

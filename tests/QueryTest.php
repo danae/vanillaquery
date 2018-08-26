@@ -119,12 +119,32 @@ class QueryTest extends TestCase
   * @dataProvider queryFindProvider
   * @depends testConstructor
   */
-  public function testFind($query, array $resultKeys, Query $queryObject)
+  public function testFind($query, array $expectedKeys, Query $queryObject)
   {
     $results = $queryObject->find($query);
 
-    $this->assertEquals($resultKeys,array_keys($results));
-    foreach ($resultKeys as $resultKey)
-      $this->assertEquals($queryObject->data[$resultKey],$results[$resultKey]);
+    $this->assertEquals($expectedKeys,array_keys($results));
+    foreach ($expectedKeys as $expectedKey)
+      $this->assertEquals($queryObject->data[$expectedKey],$results[$expectedKey]);
+  }
+
+  /**
+  * @dataProvider queryFindProvider
+  * @depends testConstructor
+  */
+  public function testFindOne($query, array $expectedKeys, Query $queryObject)
+  {
+    $result = $queryObject->findOne($query);
+
+    if (empty($expectedKeys))
+    {
+      $this->assertEquals(null,$result);
+    }
+    else
+    {
+      reset($expectedKeys);
+      $expectedKey = current($expectedKeys);
+      $this->assertEquals($queryObject->data[$expectedKey],$result);
+    }
   }
 }

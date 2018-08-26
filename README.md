@@ -2,9 +2,9 @@
 
 VanillaQuery is a MongoDB-like document query interface for PHP objects.
 
-> PLEASE NOTE: This library is in an early development stage! Not all functionality described below is currently
-working or not tested, notably:
-> - The `Query::findOne()` function
+> PLEASE NOTE: This documentation is currently not complete, it will be expanded as the code base grows. In the usage
+> section you can see the basic usage of the library, but you can dive into the code and read the comments to get a
+> deeper understanding of the library.
 
 ## Contents
 
